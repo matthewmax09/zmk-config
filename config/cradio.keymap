@@ -22,16 +22,26 @@
             require-prior-idle-ms = <100>;
             bindings = <&kp>, <&kp>;
         };
-    };
 
-    combos {
-        compatible = "zmk,combos";
-        combo_esc {
-            timeout-ms = <50>;
-            key-positions = <30 31>;
-            bindings = <&mo 2>;
+        lt: layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            bindings = <&mo>, <&kp>;
+            display-name = "Layer-Tap";
         };
     };
+
+    //combos {
+    //    compatible = "zmk,combos";
+    //    combo_esc {
+    //        timeout-ms = <50>;
+    //        key-positions = <30 31>;
+    //        bindings = <&mo 2>;
+    //    };
+    //};
 
     conditional_layers {
         compatible = "zmk,conditional-layers";
@@ -80,11 +90,11 @@
         left_layer {
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│          │  [       │  {       │  }       │          │   │  ^       │  (       │  )       │  ]       │  ~       │
-            &trans     &kp LBKT   &kp LBRC   &kp RBRC   &trans         &kp CARET  &kp LPAR   &kp RPAR   &kp RBKT   &kp TILDE
+        //│          │  [       │  UP      │  }       │          │   │  ^       │  (       │  )       │  ]       │  ~       │
+            &trans     &kp LBKT   &kp UP     &kp RBRC   &trans         &kp CARET  &kp LPAR   &kp RPAR   &kp RBKT   &kp TILDE
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│  !       │  @       │  #       │  $       │  %       │   │  *       │  RCTRL   │  RSHFT   │  RALT    │  RGUI    │
-            &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT      &kp ASTRK  &kp RCTRL  &kp RSHFT  &kp RALT   &kp RGUI
+        //│  !       │  LEFT    │  DOWN    │  RIGHT   │  %       │   │  *       │  RCTRL   │  RSHFT   │  RALT    │  RGUI    │
+            &kp EXCL   &kp LEFT   &kp DOWN   &kp RIGHT  &kp PRCNT      &kp ASTRK  &kp RCTRL  &kp RSHFT  &kp RALT   &kp RGUI
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│          │          │          │          │          │   │  &       │  _       │  +       │  │       │          │
             &trans     &trans     &trans     &trans     &trans         &kp AMPS   &kp UNDER  &kp PLUS   &kp PIPE   &trans
